@@ -1,0 +1,57 @@
+@mixin font($f_family, $f_size, $f_weight, $l_height, $color, $l_space) {
+  font-family: $f_family;
+  font-size: $f_size;
+  font-weight: $f_weight;
+  line-height: $l_height; /* 118.519% */
+  letter-spacing: $l_space;
+  color: $color;
+}
+.myAccount {
+  a {
+    text-decoration: none;
+  }
+  &__breadcrumb {
+    @include font(inherit, 1.4rem, inherit, 1.5, var(--Text2, #000), none);
+    padding-top: 80px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__details {
+    display: flex;
+    padding-top: 71px;
+    gap: 100px;
+  }
+  &__choices {
+    ul + ul {
+      margin-top: 24px;
+    }
+    h1 {
+      @include font(inherit, 1.6rem, 500, 1.5, var(--Text2, #000), none);
+    }
+    li {
+      margin-top: 16px;
+      padding-left: 30px;
+      a {
+        @include font(inherit, 1.6rem, normal, 1.5, var(--Text2, #000), none);
+        opacity: 0.5;
+      }
+    }
+    li + li {
+      margin-top: 8px;
+    }
+    .myAccount__choice--active {
+      color: var(--Secondary-2, #db4444);
+      opacity: 1;
+    }
+  }
+  &__edit {
+    width: 74%;
+  }
+  &__welcome {
+    span {
+      color: var(--Secondary-2, #db4444);
+      font-size: 1.4rem;
+      line-height: 21px;
+    }
+  }
+}

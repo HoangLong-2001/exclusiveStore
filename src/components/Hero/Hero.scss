@@ -1,0 +1,127 @@
+.hero {
+  display: flex;
+  &__left {
+    border-right: 0.5px solid #ccc;
+    padding-top: 40px;
+    padding-right: 16px;
+    width: 20%;
+
+    ul {
+      position: relative;
+      .hero__extend {
+        li{
+          padding: 10px 10px 10px 10px;
+        }
+        li:hover{
+          background-color: #ccc;
+          color:white
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: -35px;
+        right: -502px;
+        opacity: 0;
+        background-color: #fff;
+        width: 500px;
+        height: 200px;
+        transition: opacity 0.5s ease-in-out;
+      }
+      .parent--3 .hero__extend{
+        height: 300px;
+        
+      }
+    }
+
+    .parent--1:hover .hero__extend {
+      opacity: 1;
+      z-index: 1;
+    }
+    .parent--2:hover .hero__extend {
+      opacity: 1;
+      z-index: 1;
+    }
+    .parent--3:hover .hero__extend {
+      opacity: 1;
+      z-index: 1;
+    }
+    .parent--4:hover .hero__extend {
+      opacity: 1;
+      z-index: 1;
+    }
+    ul > li {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      img {
+        margin-left: auto;
+      }
+      a {
+        padding: 0;
+        text-decoration: none;
+        color: var(--Text2, #000);
+        font-weight: 400;
+        line-height: 1.5; /* 150% */
+      }
+    }
+    ul > li:not(li:first-child) {
+      margin-top: 16px;
+    }
+  }
+  &__right {
+    padding-top: 40px;
+    padding-left: 45px;
+    width: 80%;
+  }
+  &__swipper {
+    &--1 {
+      background-color: #f6f6f6;
+      width: 100%;
+      height: 344px;
+      display: flex;
+      gap: 38px;
+      align-items: center;
+      justify-content: center;
+      padding-left: 64px;
+    }
+
+    &--title {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #2e2b2b;
+      font-weight: 400;
+      line-height: 1.5; /* 150% */
+    }
+    &--desc {
+      margin-top: 20px;
+      color: #2e2b2b;
+      max-width: 294px;
+      /* Heading/48PX SemiBold */
+      font-family: Inter;
+      font-size: 4.8rem;
+      font-weight: 600;
+      line-height: 1.25; /* 125% */
+      letter-spacing: 1.92px;
+    }
+    &--bottom {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      span {
+        display: inline-block;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #2e2b2b;
+        color: #2e2b2b;
+        text-align: center;
+        font-size: 1.6rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.5; /* 150% */
+        cursor: pointer;
+      }
+    }
+  }
+}

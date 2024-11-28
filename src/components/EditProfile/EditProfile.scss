@@ -1,0 +1,52 @@
+@mixin font($f_family, $f_size, $f_weight, $l_height, $color, $l_space) {
+  font-family: $f_family;
+  font-size: $f_size;
+  font-weight: $f_weight;
+  line-height: $l_height;
+  letter-spacing: $l_space;
+  color: $color;
+}
+.form {
+  @include font(inherit, 1.6rem, 400, 1.5, var(--Text2, #000), normal);
+  padding: 40px 80px 40px 80px;
+  button{
+    border: none;
+    cursor: pointer;
+  }
+  &__edit {
+    @include font(inherit, 2rem, 500, 1.4, var(--Secondary-2, #db4444), normal);
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+  &__edit {
+    margin-top: 16px;
+  }
+  &__input {
+    height: 50px;
+    border-radius: 4px;
+    background: var(--Secondary, #f5f5f5);
+  }
+  .btn__group {
+    display: flex;
+    gap: 32px;
+    justify-content: end;
+  }
+  .btn__group > button:nth-child(1) {
+    margin: 0;
+    padding: 0;
+    @include font(inherit, 1.6rem, 400, 1.5, var(--Text2, #000), normal);
+    background-color: transparent;
+  }
+
+  .btn__group > button:nth-child(2) {
+    color: #f5f5f5;
+    display: flex;
+    padding: 16px 48px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: var(--Button2, #db4444);
+  }
+}

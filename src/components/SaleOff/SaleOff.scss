@@ -1,0 +1,101 @@
+.saleOff {
+  padding-top: 140px;
+  padding-bottom: 60px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    &--left {
+      gap: 87px;
+      span {
+        color: var(--Secondary-2, #db4444);
+        font-weight: 600;
+        line-height: 1.25; /* 125% */
+      }
+    }
+    &--btn{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+  }
+  &__today {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    div {
+      width: 20px;
+      height: 40px;
+      border-radius: 5px;
+      background-color: #db4444;
+    }
+  }
+  &__desc {
+    margin-top: 24px;
+    color: var(--Text2, #000);
+    font-family: "Inter", sans-serif;
+    font-size: 3.6rem;
+    font-weight: 600;
+    line-height: 1.33;
+    letter-spacing: 1.44px;
+  }
+  &__time {
+    display: flex;
+    gap: 84px;
+  }
+  &__timer {
+    display: flex;
+    gap: 21px;
+    text-align: center;
+    h3 {
+      span {
+        display: inline-block;
+        color: var(--Text2, #000);
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 1.5;
+        margin-bottom: 4px;
+      }
+      color: var(--Text2, #000);
+      font-family: "Inter", sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 0.93;
+      letter-spacing: 1.28px;
+    }
+    .dots {
+      margin-top: 40px;
+      height: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+      .dot {
+        width: 4px;
+        height: 4px;
+        background-color: #e07575;
+        border-radius: 50%;
+      }
+    }
+  }
+  &__prev {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: #F5F5F5;
+    border: none;
+  }
+  &__next{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #F5F5F5;
+    border: none;
+  }
+  &__products{
+    margin-top: 31px;
+  }
+}
