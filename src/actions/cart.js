@@ -19,13 +19,13 @@ export const updateQuantity = (id, quantity = 1, color, size) => {
 };
 export const deleteItem = (id) => {
   return {
-    type: "DELETE_ITEM",
+    type: "DELETE_CART_ITEM",
     _id: id,
   };
 };
 export const deleteAll = () => {
   return {
-    type: "DELETE_ALL",
+    type: "DELETE_ALL_CART_ITEM",
   };
 };
 export const fetchCart = (data) => {

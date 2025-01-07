@@ -39,25 +39,25 @@ export default function Footer() {
             </ul>
           </div>
           <div className="footer__column3">
-            <h2 className="footer__column--title">Account</h2>
+            <h2 className="footer__column--title">Tài khoản</h2>
             <ul>
               <li>
-                <Link to="private/info">My Account</Link>
+                <Link to="private/info">Quản lý tài khoản</Link>
               </li>
               <li>
                 <span>
-                  <Link to="/login">Login</Link> /{" "}
-                  <Link to="/register">Register</Link>
+                  <Link to="/login">Đăng nhập</Link> /{" "}
+                  <Link to="/register">Đăng ký</Link>
                 </span>
               </li>
               <li>
-                <Link to="private/cart">Cart</Link>
+                <Link to="private/cart">Giỏ hàng</Link>
               </li>
               <li>
-                <Link>Wishlist</Link>
+                <Link to="private/wishlist">Sản phẩm yêu thích</Link>
               </li>
               <li>
-                <Link to={"allProducts"}>Shop</Link>
+                <Link to={"allProducts"}>Cửa hàng</Link>
               </li>
             </ul>
           </div>
@@ -74,7 +74,7 @@ export default function Footer() {
                 <Link>FAQ</Link>
               </li>
               <li>
-                <Link>Contact</Link>
+                <Link to ="/contact">Liên hệ</Link>
               </li>
             </ul>
           </div>

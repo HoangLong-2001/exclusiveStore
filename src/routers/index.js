@@ -5,13 +5,19 @@ import About from "../pages/About";
 import AllProducts from "../pages/AllProducts";
 import Cart from "../pages/Cart";
 import Contact from "../pages/Contact";
+import ForgotPassword from "../pages/ForgotPassword";
+import Email from "../pages/ForgotPassword/Email";
+import NewPassword from "../pages/ForgotPassword/NewPassword";
+import Otp from "../pages/ForgotPassword/Otp";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyAccount from "../pages/MyAccount";
 import Order from "../pages/Order";
+import OrderSuccess from "../pages/Order/OrderSuccess";
 import Private from "../pages/Private";
 import ProductDetail from "../pages/ProductDetail";
 import Register from "../pages/Register";
+import Wishlist from "../pages/Wishlist";
 export const routes = [
   {
     path: "/",
@@ -64,6 +70,10 @@ export const routes = [
             path: "order",
             element: <Order />,
           },
+          {
+            path: "wishlist",
+            element: <Wishlist />,
+          },
         ],
       },
       {
@@ -74,6 +84,28 @@ export const routes = [
         path: "allProducts",
         element: <AllProducts />,
       },
+      {
+        path: "forgotPassword",
+        element: <ForgotPassword />,
+        children: [
+          {
+            index:true,
+            element: <Email />,
+          },
+          {
+            path: "otp",
+            element: <Otp />,
+          },
+          {
+            path: "newPassword",
+            element: <NewPassword />,
+          },
+        ],
+      },
+      {
+        path:"success",
+        element:<OrderSuccess/>
+      }
     ],
   },
 ];

@@ -9,33 +9,36 @@ import employ3 from "./img/epl3.svg";
 import service1 from "./img/Services1.svg";
 import service2 from "./img/Services2.svg";
 import service3 from "./img/Services3.svg";
-import { Breadcrumb } from 'antd';
+import { Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
 export default function About() {
   const items = [
     {
-      title:<Link to="/">Home</Link>
-    },{
-      title:"About"
-    }
-  ]
+      title: <Link to="/">Trang chủ</Link>,
+    },
+    {
+      title: "Thông tin",
+    },
+  ];
   return (
     <main className="about">
-     <div className="about__breadcrumb"><Breadcrumb items={items}/></div>
+      <div className="about__breadcrumb">
+        <Breadcrumb items={items} />
+      </div>
       <section className="about__story">
         <section className="about__story--left">
-          <h1 className="about__title">Our Story</h1>
+          <h1 className="about__title">Câu chuyện của chúng tôi</h1>
           <p className="about__desc">
-            Launced in 2015, Exclusive is South Asia’s premier online shopping
-            makterplace with an active presense in Bangladesh. Supported by wide
-            range of tailored marketing, data and service solutions, Exclusive
-            has 10,500 sallers and 300 brands and serves 3 millioons customers
-            across the region.
+            Ra mắt vào năm 2015, Exclusive là nền tảng mua sắm trực tuyến hàng
+            đầu Đông Nam Á với sự hiện diện tích cực tại Việt Nam. Được hỗ trợ
+            bởi nhiều giải pháp tiếp thị, dữ liệu và dịch vụ được thiết kế
+            riêng, Exclusive có 10.500 nhân viên bán hàng và 300 thương hiệu và
+            phục vụ 3 triệu khách hàng trên khắp khu vực.
           </p>
           <p className="about__desc">
-            Exclusive has more than 1 Million products to offer, growing at a
-            very fast. Exclusive offers a diverse assotment in categories
-            ranging from consumer.
+            Exclusive cung cấp hơn 1 triệu sản phẩm, tăng trưởng với tốc độ rất
+            nhanh. Exclusive cung cấp nhiều loại sản phẩm đa dạng từ hàng tiêu
+            dùng.
           </p>
         </section>
         <div className="about__story--right">
@@ -86,12 +89,12 @@ export default function About() {
               d="M45.2217 55V45C45.2217 44.1159 44.8705 43.2681 44.2454 42.6429C43.6202 42.0178 42.7724 41.6666 41.8883 41.6666H38.555C37.671 41.6666 36.8231 42.0178 36.198 42.6429C35.5729 43.2681 35.2217 44.1159 35.2217 45V55"
               stroke="#FAFAFA"
               strokeWidth="2"
-              stroke-miterlimit="16"
+              strokeMiterlimit="16"
             />
           </svg>
 
           <h1 className="about__row--title">10.5k </h1>
-          <p className="about__row--desc">Sallers active our site</p>
+          <p className="about__row--desc">Nhà bán hàng hoạt động</p>
         </div>
         <div className="about__row">
           <svg
@@ -131,7 +134,7 @@ export default function About() {
           </svg>
 
           <h1 className="about__row--title">33k</h1>
-          <p className="about__row--desc">Mopnthly Produduct Sale</p>
+          <p className="about__row--desc">Sản phẩm bán hàng tháng</p>
         </div>
         <div className="about__row">
           <svg
@@ -154,7 +157,7 @@ export default function About() {
           </svg>
 
           <h1 className="about__row--title">45.5k</h1>
-          <p className="about__row--desc">Customer active in our site</p>
+          <p className="about__row--desc">Khách hàng đang sử dụng</p>
         </div>
         <div className="about__row">
           <svg
@@ -183,7 +186,7 @@ export default function About() {
           </svg>
 
           <h1 className="about__row--title">25k</h1>
-          <p className="about__row--desc">Anual gross sale in our site</p>
+          <p className="about__row--desc">Tổng doanh số bán hàng</p>
         </div>
       </section>
       <section className="about__employ">
@@ -235,22 +238,26 @@ export default function About() {
         </div>
       </section>
       <section className="about__services">
-        <div className="about__service">
+        <div className="about__services--content">
           <img src={service1} alt="FREE AND FAST DELIVERY" />
-          <h1 className="about__services--title">FREE AND FAST DELIVERY</h1>
+          <h1 className="about__services--title">GIAO HÀNG MIỄN PHÍ</h1>
           <p className="about__services--desc">
-            Free delivery for all orders over $140
+            Giao hàng miễn phí cho tất cả các đơn hàng
           </p>
         </div>
-        <div className="service">
+        <div className="about__services--content">
           <img src={service2} alt="24/7 CUSTOMER SERVICE" />
-          <h1 className="about__services--title">24/7 CUSTOMER SERVICE</h1>
-          <p className="about__services--desc">Friendly 24/7 customer support</p>
+          <h1 className="about__services--title">DỊCH VỤ KHÁCH HÀNG 24/7</h1>
+          <p className="about__services--desc">
+            Hỗ trợ khách hàng thân thiện 24/7
+          </p>
         </div>
-        <div className="service">
+        <div className="about__services--content">
           <img src={service3} alt="MONEY BACK GUARANTEE" />
-          <h1 className="about__services--title">MONEY BACK GUARANTEE</h1>
-          <p className="about__services--desc">We reurn money within 30 days</p>
+          <h1 className="about__services--title">ĐẢM BẢO HOÀN TIỀN</h1>
+          <p className="about__services--desc">
+            Chúng tôi hoàn lại tiền trong vòng 30 ngày
+          </p>
         </div>
       </section>
     </main>

@@ -1,0 +1,101 @@
+.wishlist {
+  padding-top: 80px;
+  padding-bottom: 120px;
+  &__info {
+    color: #000;
+    font-size: 2rem;
+    line-height: 1.3; /* 130% */
+  }
+  &__list {
+    padding-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 270px));
+    column-gap: 30px;
+  }
+  &__cart {
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    &--title {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-top: 16px;
+      color: #000;
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1.5; /* 150% */
+    }
+    &--img {
+      border-radius: 4px;
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+    }
+    // &--btn {
+    //   width: 100%;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   gap: 8px;
+    //   background-color: #000;
+    //   color: #fff;
+    //   font-size: 1.2rem;
+    //   line-height: 1.5; /* 150% */
+    //   border-radius: 0px 0px 4px 4px;
+    //   background: var(--Button, #000);
+    //   img {
+    //     width: 24px;
+    //     aspect-ratio: 1/1;
+    //   }
+    //   cursor: pointer;
+    // }
+    &--discount {
+      display: inline-flex;
+      padding: 4px 12px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 4px;
+      background: var(--Secondary-2, #db4444);
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 1;
+      color: var(--Text, #fafafa);
+      font-size: 1.2rem;
+      line-height: 1.5; /* 150% */
+    }
+    &--delete {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 5px;
+      background-color: #f5f5f5;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+    &--price {
+      display: flex;
+      margin-top: 8px;
+      gap: 12px;
+    }
+    &--newPrice {
+      color: var(--Secondary-2, #db4444);
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1.5; /* 150% */
+    }
+    &--oldPrice {
+      color: var(--Button, #000);
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1.5; /* 150% */
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+  }
+}

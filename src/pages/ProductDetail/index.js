@@ -3,14 +3,13 @@ import { useParams } from "react-router-dom";
 import { getAProduct } from "../../services/productService";
 import { Badge, Breadcrumb, Image, Rate } from "antd";
 import priceFormat from "../../helpers/priceFormat";
-import { priceCaculator } from "../../helpers/caculatePrice";
 import { Link } from "react-router-dom";
 import "./ProductDetail.scss";
 import deliveryIco from "./img/icon-delivery.svg";
 import returnIco from "./img/Icon-return.svg";
-import RelatedProduct from "../../components/RelatedProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, updateQuantity } from "../../actions/cart";
+import { addToWishlist, deleteItem } from "../../actions/wishlist";
 export default function ProductDetail() {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
@@ -21,6 +20,9 @@ export default function ProductDetail() {
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer);
+  const wishlist = useSelector((state) => state.wishlistReducer);
+  const checkWishlist =
+    wishlist.find((item) => item.product?._id === productId) || false;
   const items = [
     {
       title: <Link to="/">Home</Link>,
@@ -30,8 +32,6 @@ export default function ProductDetail() {
       title: `${product.title}`,
     },
   ];
-  console.log(cart);
-
   useEffect(() => {
     window.scrollTo(0, 200);
   }, []);
@@ -72,6 +72,13 @@ export default function ProductDetail() {
       );
     }
   };
+  const handleWishlist = () => {
+    if (checkWishlist) {
+      dispatch(deleteItem(productId));
+      return;
+    }
+    dispatch(addToWishlist(product));
+  };
   return (
     <>
       <div className="productDetail">
@@ -82,19 +89,19 @@ export default function ProductDetail() {
         <div className="productDetail__detail">
           {isLoading && (
             <>
-              {" "}
               <div className="productDetail__imageChoices">
                 {product.images.map((item, index) => (
-                  <img
-                    width={"100%"}
-                    height={138}
-                    src={item}
-                    key={index}
-                    onClick={() => {
-                      setChoice(index);
-                    }}
-                    alt="choice"
-                  />
+                  <b key={index}>
+                    <img
+                      width={"100%"}
+                      height={138}
+                      src={item}
+                      onClick={() => {
+                        setChoice(index);
+                      }}
+                      alt="choice"
+                    />
+                  </b>
                 ))}
               </div>
               <div className="productDetail__image">
@@ -127,9 +134,7 @@ export default function ProductDetail() {
                     <>
                       {" "}
                       <span className="newPrice">
-                        {priceFormat(
-                          priceCaculator(product.price, product.discount)
-                        )}
+                        {priceFormat(product.discountPrice)}
                       </span>
                       <span className="oldPrice">
                         {" "}
@@ -149,14 +154,13 @@ export default function ProductDetail() {
                 </p>
                 <div className="productDetail__info--line"></div>
                 <div className="productDetail__info--colors">
-                  Colors:{" "}
+                  Màu sắc:{" "}
                   {product.colors.map((item, idx) => (
-                    <>
+                    <b key={idx}>
                       {item === color ? (
-                        <Badge dot color="black" key={idx}>
+                        <Badge dot color="black">
                           <button
                             className={"color__choice active"}
-                            key={idx}
                             onClick={() => {
                               setColor(item);
                             }}
@@ -167,24 +171,22 @@ export default function ProductDetail() {
                       ) : (
                         <button
                           className={"color__choice"}
-                          key={idx}
                           onClick={() => setColor(item)}
                         >
                           {item}
                         </button>
                       )}
-                    </>
+                    </b>
                   ))}
                 </div>
                 <div className="productDetail__info--sizes">
-                  Size:
+                  Kích thước:
                   {product.sizes.map((item, idx) => (
-                    <>
+                    <b key={idx}>
                       {item === size ? (
                         <Badge dot color="black">
                           <button
                             className={"size__choice active"}
-                            key={idx}
                             onClick={() => {
                               setSize(item);
                             }}
@@ -195,13 +197,12 @@ export default function ProductDetail() {
                       ) : (
                         <button
                           className={"size__choice"}
-                          key={idx}
                           onClick={() => setSize(item)}
                         >
                           {item}
                         </button>
                       )}
-                    </>
+                    </b>
                   ))}{" "}
                 </div>
                 <div className="productDetail__info--btn">
@@ -258,7 +259,13 @@ export default function ProductDetail() {
                   >
                     Thêm vào giỏ hàng
                   </button>
-                  <button className="productDetail__btn--wishlist">
+                  <button
+                    className={
+                      "productDetail__btn--wishlist" +
+                      (checkWishlist ? " active" : "")
+                    }
+                    onClick={handleWishlist}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="32"
@@ -268,7 +275,7 @@ export default function ProductDetail() {
                     >
                       <path
                         d="M11 7C8.239 7 6 9.216 6 11.95C6 14.157 6.875 19.395 15.488 24.69C15.6423 24.7839 15.8194 24.8335 16 24.8335C16.1806 24.8335 16.3577 24.7839 16.512 24.69C25.125 19.395 26 14.157 26 11.95C26 9.216 23.761 7 21 7C18.239 7 16 10 16 10C16 10 13.761 7 11 7Z"
-                        stroke="black"
+                        stroke="currentColor"
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -278,7 +285,7 @@ export default function ProductDetail() {
                 </div>
                 <div className="productDetail__info--extra">
                   <div className="productDetail__info--free">
-                    <img src={deliveryIco} alt="delivery" />
+                    <img src={deliveryIco} alt="deliveryIco" />
                     <div className="text">
                       <h1 className="title">Free Delivery</h1>
                       <p className="desc">
@@ -287,7 +294,7 @@ export default function ProductDetail() {
                     </div>
                   </div>
                   <div className="productDetail__info--return">
-                    <img src={returnIco} alt="return" />
+                    <img src={returnIco} alt="returnIco" />
                     <div className="text">
                       <h1 className="title">Free Delivery</h1>
                       <p className="desc">
@@ -300,7 +307,7 @@ export default function ProductDetail() {
             </>
           )}
         </div>
-        <div className="productDetail__related">
+        {/* <div className="productDetail__related">
           <div className="productDetail__related--top">
             <div className="productDetail__related--left">
               <div>
@@ -313,7 +320,7 @@ export default function ProductDetail() {
           </div>
         </div>
         <div className="productDetail__related--products"></div>
-        <RelatedProduct category={product.category} />
+        <RelatedProduct category={product.category} /> */}
       </div>
     </>
   );

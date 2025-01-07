@@ -4,10 +4,16 @@
   align-items: center;
   gap: 129px;
   &__left {
+    flex:2;
+    max-width: 70%;
     height: 781px;
     img {
       height: 100%;
     }
+  }
+  &__right{
+    max-width: 30%;
+    flex:1;
   }
   .picture {
     width: 100%;
@@ -30,11 +36,16 @@
     line-height: 1.5; /* 150% */
   }
   &__warning {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin-top: 16px;
     color: red;
     font-size: 1.5rem;
   }
   .input__field {
+    max-width: 100%;
     margin-top: 48px;
     padding-bottom: 8px;
     min-width: 370px;

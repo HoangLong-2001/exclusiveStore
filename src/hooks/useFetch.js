@@ -20,7 +20,11 @@ function fetchReducer(state, action) {
   }
 }
 export default function useFetch(params) {
-  const [data, dispatch] = useReducer(fetchReducer, { isLoading: false });
+  const [data, dispatch] = useReducer(fetchReducer, {
+    isLoading: false,
+    products: [],
+    error: null,
+  });
   const page = params.pages || 1;
   const filter = params.checkFilter || -1;
   const skip = params.pages ? (page - 1) * params.limit : 0;

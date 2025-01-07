@@ -11,10 +11,10 @@ export default function MyAccount() {
   const dispatch = useDispatch();
   const items = [
     {
-      title: <Link to="/">Home</Link>,
+      title: <Link to="/">Trang chủ</Link>,
     },
     {
-      title: "My Account",
+      title: "Tài khoản",
     },
   ];
 
@@ -38,39 +38,41 @@ export default function MyAccount() {
       <div className="myAccount__breadcrumb">
         <Breadcrumb items={items} />
         <h3 className="myAccount__welcome">
-          Welcome! <span>{account.name || "..."}</span>
+        Chào mừng! <span>{account.name || "..."}</span>
         </h3>
       </div>
       <div className="myAccount__details">
         <div className="myAccount__choices">
-          <h1>Manage My Account</h1>
+          <h1>
+          Quản lý tài khoản</h1>
           <ul>
             <li>
               <NavLink className={navLinkActive} to="/private/info">
-                My Profile
+              Hồ sơ 
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to={"/private/info/addressBook"}>Address Book</NavLink>
             </li>
             <li>
               <NavLink to={"/"}>My Payment Options</NavLink>
-            </li>
+            </li> */}
           </ul>
 
           <ul className="myAccount__orders">
-            <h1>My Orders</h1>
+            <h1>Đơn hàng</h1>
             <ul>
+              {/* <li>
+                <NavLink to={"/"}>Hàng hoàn trả</NavLink>
+              </li> */}
               <li>
-                <NavLink to={"/"}>My Returns</NavLink>
+                <NavLink to={"/"}>Hàng đã hủy</NavLink>
               </li>
-              <li>
-                <NavLink to={"/"}>My Cancellations</NavLink>
-              </li>
+              <li><NavLink to={"/"}>Đơn hàng của tôi</NavLink></li>
             </ul>
           </ul>
           <ul className="myAccount__wishlist">
-            <h1>My WishList</h1>
+            <h1><Link to="/private/wishlist">Dang sách yêu thích</Link></h1>
           </ul>
         </div>
         <div className="myAccount__edit">

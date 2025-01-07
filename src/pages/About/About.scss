@@ -194,5 +194,8 @@
       margin-top: 8px;
       @include font(inherit, 1.4rem, inherit, 1.5, #000, none);
     }
+    &--content{
+      flex:1;
+    }
   }
 }

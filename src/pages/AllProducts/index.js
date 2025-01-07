@@ -15,7 +15,7 @@ import "./AllProducts.scss";
 import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../../hooks/useFetch";
 import ProductCard from "../../components/ProductCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addFilter, deleteFilter } from "../../actions/filter";
 const breadcrumbItems = [
   {
@@ -31,7 +31,7 @@ export default function AllProducts() {
   const [checkFilter, setCheckFilter] = useState(true);
   const dispatch = useDispatch();
   const [total] = useFetch({ ...filter, checkFilter });
-  const [data] = useFetch({ ...filter, pages, limit: 10, checkFilter });
+  const [data] = useFetch({ ...filter, pages, limit: 12, checkFilter });
   const handleFilter = (e) => {
     const keys = e.target.name.split(",");
     const value = e.target.value;
@@ -59,6 +59,7 @@ export default function AllProducts() {
     dispatch(addFilter(obj));
     setCheckFilter(!checkFilter);
   };
+
   const filterItems = [
     {
       key: "1",
@@ -67,55 +68,76 @@ export default function AllProducts() {
         <Flex gap={10} vertical>
           <Checkbox
             name={"tags,category"}
-            value={[["JACKETS"].join(","), "shirt"]}
+            value={[["JACKETS", "SPORT"].join(","), "shirt".toUpperCase()]}
             onChange={handleFilter}
+            // checked={handleChecked({ tags: "JACKETS", category: "shirt" })}
           >
-            Áo gió
+            Áo khoác
           </Checkbox>
           <Checkbox
             name={"tags,category"}
-            value={[["HOODIE"].join(","), "shirt"]}
+            value={[["HOODIE", "SPORT"].join(","), "shirt".toUpperCase()]}
             onChange={handleFilter}
+            // checked={handleChecked({ tags: "HOODIE", category: "shirt" })}
           >
             Áo hoodie
           </Checkbox>
           <Checkbox
             name={"tags,category"}
-            value={[["T-SHIRT"].join(","), "shirt"]}
+            value={[["T-SHIRT", "SPORT"].join(","), "shirt".toUpperCase()]}
             onChange={handleFilter}
+            // checked={handleChecked({ tags: "T-SHIRT", category: "shirt" })}
           >
             Áo T-shirt
           </Checkbox>
           <Checkbox
             name={"tags,category"}
-            value={[["POLO"].join(","), "shirt"]}
+            value={[["POLO", "SPORT"].join(","), "shirt".toUpperCase()]}
             onChange={handleFilter}
+            // checked={handleChecked({ tags: "POLO", category: "shirt" })}
           >
             Áo Polo
           </Checkbox>
 
           <Checkbox
             name={"tags,category"}
-            value={[["SHORT"].join(","), "trousers"]}
+            value={[["SHORTS", "SPORT"].join(","), "trousers".toUpperCase()]}
             onChange={handleFilter}
+            // checked={handleChecked({
+            //   tags: "SHORT",
+            //   category: "trousers",
+            // })}
           >
             Quần short
           </Checkbox>
           <Checkbox
             name={"tags,category"}
-            value={[["LONG-PANTS"].join(","), "trousers"]}
+            value={[
+              ["LONG-PANTS", "SPORT"].join(","),
+              "trousers".toUpperCase(),
+            ]}
             onChange={handleFilter}
+            // checked={handleChecked({
+            //   tags: "LONG-PAINT",
+            //   category: "trousers",
+            // })}
           >
             Quần dài
           </Checkbox>
 
-          <Checkbox name={"category"} value={["shoes"]} onChange={handleFilter}>
+          <Checkbox
+            name={"category"}
+            value={["shoes".toUpperCase()]}
+            onChange={handleFilter}
+            // checked={handleChecked({ category: "shoes" })}
+          >
             Giày
           </Checkbox>
           <Checkbox
             name={"category"}
-            value={["accessory"]}
+            value={["accessory".toUpperCase()]}
             onChange={handleFilter}
+            // checked={handleChecked({ category: "accessory" })}
           >
             Phụ kiện
           </Checkbox>
@@ -127,21 +149,37 @@ export default function AllProducts() {
       label: "Thương hiệu",
       children: (
         <Flex gap={10} vertical>
-          <Checkbox name="brand" value={["NIKE"]} onChange={handleFilter}>
+          <Checkbox
+            name="brand"
+            value={["NIKE"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ brand: "NIKE" })}
+          >
             Nike
           </Checkbox>
-          <Checkbox name="brand" value={["ADIDAS"]} onChange={handleFilter}>
+          <Checkbox
+            name="brand"
+            value={["ADIDAS"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ brand: "ADIDAS" })}
+          >
             Adidas
           </Checkbox>
-          <Checkbox name="brand" value={["ASICS"]} onChange={handleFilter}>
+          <Checkbox
+            name="brand"
+            value={["ASICS"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ brand: "ASICS" })}
+          >
             Asics
           </Checkbox>
           <Checkbox
             name="brand"
-            value={["LE COQ SPORTIF"]}
+            value={["LI-NING"]}
             onChange={handleFilter}
+            // checked={handleChecked({ brand: "LI-NING" })}
           >
-            LE COQ SPORTIF
+            LI-NING
           </Checkbox>
         </Flex>
       ),
@@ -151,24 +189,43 @@ export default function AllProducts() {
       label: "Dòng sản phẩm",
       children: (
         <Flex gap={10} vertical>
-          <Checkbox name={"tags"} value={["SPORT"]} onChange={handleFilter}>
+          <Checkbox name={"sports"} value={["SPORT"]} onChange={handleFilter}>
             Thể thao
           </Checkbox>
-          <Checkbox name={"tags"} value={["FOOTBALL"]} onChange={handleFilter}>
+          <Checkbox
+            name={"sports"}
+            value={["FOOTBALL", "SPORT"]}
+            onChange={handleFilter}
+          >
             Bóng đá
           </Checkbox>
           <Checkbox
-            name={"tags"}
+            name={"sports"}
             value={["BASKETBALL"]}
             onChange={handleFilter}
           >
             Bóng rổ
           </Checkbox>
-          <Checkbox name={"tags"} value={["TENNIS"]} onChange={handleFilter}>
+          <Checkbox
+            name={"sports"}
+            value={["TENNIS", "SPORT"]}
+            onChange={handleFilter}
+          >
             Tennis
           </Checkbox>
-          <Checkbox name={"tags"} value={["GOLF"]} onChange={handleFilter}>
+          <Checkbox
+            name={"sports"}
+            value={["GOLF", "SPORT"]}
+            onChange={handleFilter}
+          >
             GOLF
+          </Checkbox>
+          <Checkbox
+            name={"sports"}
+            value={["RUNNING", "SPORT"]}
+            onChange={handleFilter}
+          >
+            Chạy bộ
           </Checkbox>
         </Flex>
       ),
@@ -279,19 +336,44 @@ export default function AllProducts() {
       label: "Giới tính",
       children: (
         <Flex gap={10} vertical>
-          <Checkbox name="genders" value={["MEN"]} onChange={handleFilter}>
+          <Checkbox
+            name="genders"
+            value={["MEN"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ gender: "MEN" })}
+          >
             Nam
           </Checkbox>{" "}
-          <Checkbox name="genders" value={["WOMEN"]} onChange={handleFilter}>
+          <Checkbox
+            name="genders"
+            value={["WOMEN"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ gender: "WOMEN" })}
+          >
             Nữ
           </Checkbox>
-          <Checkbox name="genders" value={["KIDS"]} onChange={handleFilter}>
+          <Checkbox
+            name="genders"
+            value={["KIDS"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ gender: "KIDS" })}
+          >
             Trẻ em
           </Checkbox>{" "}
-          <Checkbox name="genders" value={["GIRLS"]} onChange={handleFilter}>
+          <Checkbox
+            name="genders"
+            value={["GIRLS"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ gender: "GIRLS" })}
+          >
             Bé nam
           </Checkbox>
-          <Checkbox name="genders" value={["BOYS"]} onChange={handleFilter}>
+          <Checkbox
+            name="genders"
+            value={["BOYS"]}
+            onChange={handleFilter}
+            // checked={handleChecked({ gender: "BOYS" })}
+          >
             Bé gái
           </Checkbox>
         </Flex>

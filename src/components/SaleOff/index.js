@@ -1,36 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./SaleOff.scss";
 import { Button } from "antd";
-import CountDown from "../../helpers/countDown";
 import ProductSale from "../ProductSale";
 import useFetch from "../../hooks/useFetch";
+import CountDown from "../CountDown";
 export default function SaleOff() {
-  const [update, setUpdate] = useState({
-    days: CountDown().days < 0 ? 0 : CountDown().days,
-    hours: CountDown().hours < 0 ? 0 : CountDown().hours,
-    minutes: CountDown().minutes < 0 ? 0 : CountDown().minutes,
-    seconds: CountDown().seconds < 0 ? 0 : CountDown().seconds,
-  });
   const [total] = useFetch({ "discount>": 0.1 });
+  console.log(total);
+
   const [pages, setPages] = useState(1);
   const handleClick = (index) => {
     return setPages(pages + index);
   };
-  useEffect(() => {
-    setInterval(() => {
-      const days = CountDown().days < 0 ? 0 : CountDown().days;
-      const hours = CountDown().hours < 0 ? 0 : CountDown().hours;
-      const minutes = CountDown().minutes < 0 ? 0 : CountDown().minutes;
-      const seconds = CountDown().seconds < 0 ? 0 : CountDown().seconds;
-
-      setUpdate({
-        days: days,
-        hours: hours,
-        minutes: minutes,
-        seconds: seconds,
-      });
-    }, 1000);
-  }, []);
 
   return (
     <>
@@ -40,43 +21,12 @@ export default function SaleOff() {
             <div>
               <div className="saleOff__today">
                 <div></div>
-                <span>Today’s</span>
+                <span>Hôm nay</span>
               </div>
             </div>
             <div className="saleOff__time">
               <p className="saleOff__desc">Flash Sales</p>
-              <div className="saleOff__timer">
-                <h3>
-                  <span>Days</span> <br />
-                  {update.days >= 10 ? update.days : `0${update.days}`}
-                </h3>
-                <div className="dots">
-                  {" "}
-                  <span className="dot"></span>
-                  <span className="dot"></span>
-                </div>
-                <h3>
-                  <span>Hours</span> <br />
-                  {update.hours >= 10 ? update.hours : `0${update.hours}`}
-                </h3>
-                <div className="dots">
-                  <span className="dot"></span>
-                  <span className="dot"></span>
-                </div>
-                <h3 className="saleOff__minutes">
-                  <span>Minutes</span> <br />
-                  {update.minutes >= 10 ? update.minutes : `0${update.minutes}`}
-                </h3>
-                <div className="dots">
-                  {" "}
-                  <span className="dot"></span>
-                  <span className="dot"></span>
-                </div>
-                <h3>
-                  <span>Seconds</span> <br />{" "}
-                  {update.seconds >= 10 ? update.seconds : `0${update.seconds}`}
-                </h3>
-              </div>
+              <CountDown />
             </div>
           </div>
           <div className="saleOff__top--right">
@@ -106,9 +56,8 @@ export default function SaleOff() {
                 className="saleOff__next"
                 onClick={() => handleClick(+1)}
                 disabled={
-                  total.products
-                    ? pages === parseInt(total.products.length / 4)
-                    : false
+                  total.products.length <= 4 ||
+                  pages === parseInt(total.products.length / 4)
                 }
               >
                 <svg

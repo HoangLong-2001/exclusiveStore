@@ -44,7 +44,7 @@ const cartReducer = (state = [], action) => {
       })();
       return newState;
 
-    case "DELETE_ITEM":
+    case "DELETE_CART_ITEM":
       const deleteItem = newState.find((item) => item._id === action._id);
       newState = newState.filter((item) => item._id !== action._id);
       (async () => {
@@ -55,7 +55,7 @@ const cartReducer = (state = [], action) => {
         }
       })();
       return newState;
-    case "DELETE_ALL":
+    case "DELETE_ALL_CART_ITEM":
       (async () => {
         try {
           await deleteAllService();

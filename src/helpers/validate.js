@@ -5,11 +5,11 @@ const emailValidate = (email) => {
 };
 export const passwordValidate = (password) => {
   const passwordRegex =
-    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/i;
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/g;
   return passwordRegex.test(password);
 };
 const fullNameValidate = (fullName) => {
-  const regexPattern = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/i;
+  const regexPattern = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/g;
   return regexPattern.test(fullName);
 };
 export const registerValidation = (value) => {

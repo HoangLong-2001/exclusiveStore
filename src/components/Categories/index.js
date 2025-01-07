@@ -19,11 +19,11 @@ export default function Categories() {
             <div>
               <div className="categories__today">
                 <div></div>
-                <span>Categories</span>
+                <span>Các loại sản phẩm</span>
               </div>
             </div>
             <div className="categories__time">
-              <p className="categories__desc">Browse By Category</p>
+              <p className="categories__desc">Chon theo loại sản phẩm</p>
             </div>
           </div>
         </div>

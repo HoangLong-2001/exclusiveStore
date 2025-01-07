@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addFilter, resetFilter } from "../../actions/filter";
 export default function BestSelling() {
-  const [data] = useFetch({ limit: 4, "rate>": 4 });
+  const [data] = useFetch({ limit: 4, "rate>": 0 });
   useSelector((state) => state.paramsReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,11 +24,11 @@ export default function BestSelling() {
             <div>
               <div className="bestSelling__today">
                 <div></div>
-                <span>This Month</span>
+                <span>Tháng này</span>
               </div>
             </div>
             <div className="bestSelling__title">
-              <p className="bestSelling__desc">Best Selling Products</p>
+              <p className="bestSelling__desc">Các sản phẩm bán chạy</p>
             </div>
           </div>
           <div className="bestSelling__top--right">
@@ -40,7 +40,7 @@ export default function BestSelling() {
                 )
               }
             >
-              View All
+              Xem tất cả
             </button>
           </div>
         </div>

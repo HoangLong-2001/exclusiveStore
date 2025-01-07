@@ -5,9 +5,8 @@ export default function Private() {
   const navigate = useNavigate();
   useEffect(() => {
     (() => {
-      if (!getCookie("accessToken")) {
+      if (!getCookie("refreshToken")) {
         navigate("/");
-        window.location.reload();
       }
     })();
   }, []);

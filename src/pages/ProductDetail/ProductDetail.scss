@@ -7,7 +7,7 @@
 }
 .productDetail {
   padding-top: 80px;
-
+  padding-bottom: 120px;
   &__detail {
     padding-top: 70px;
     display: flex;
@@ -28,12 +28,11 @@
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
-
   }
   &__image {
     width: 43%;
     height: 100%;
-
+    background-color: #afb1b3;
   }
   &__info {
     width: 34%;
@@ -120,7 +119,6 @@
         padding: 2px 5px;
         display: inline-flex;
         justify-content: center;
-        width: 50px;
         border-radius: 6px;
         background-color: transparent;
         border: 1px solid #000;
@@ -139,11 +137,11 @@
       font-size: 2rem;
       line-height: 1; /* 100% */
       letter-spacing: 0.6px;
-      .size__choice{
+      .size__choice {
         padding: 2px 5px;
         display: inline-flex;
         justify-content: center;
-  
+
         width: 50px;
         border-radius: 6px;
         background-color: transparent;
@@ -231,7 +229,7 @@
       align-items: center;
     }
     &--buyNow {
-      white-space: nowrap;;
+      white-space: nowrap;
       cursor: pointer;
       display: inline-flex;
       padding: 10px 30px;
@@ -266,6 +264,10 @@
       flex-shrink: 0;
       border-radius: 4px;
       border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+    &--wishlist.active {
+      background-color: #db4444;
+      color: var(--Text, #fafafa);
     }
   }
   &__related {

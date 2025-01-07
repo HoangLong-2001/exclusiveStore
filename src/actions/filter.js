@@ -1,18 +1,18 @@
 export const addFilter = (params) => {
   return {
-    type: "ADD",
+    type: "ADD_FILTER",
     params,
   };
 };
 
 export const resetFilter = () => {
   return {
-    type: "RESET",
+    type: "RESET_FILTER",
   };
 };
 export const deleteFilter = (params) => {
   return {
-    type: "DELETE",
+    type: "DELETE_FILTER",
     params,
   };
 };

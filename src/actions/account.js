@@ -1,12 +1,12 @@
 export const get = (data)=>{
     return{
-        type:"GET",
+        type:"GET_ACCOUNT",
         data:data
     }
 }
 export const update = (data)=>{
     return {
-        type:"UPDATE",
+        type:"UPDATE_ACCOUNT",
         data
     }
 }

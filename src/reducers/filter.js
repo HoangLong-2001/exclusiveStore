@@ -5,11 +5,11 @@ export const filterReducer = (
   action
 ) => {
   const newState = { ...state };
-  delete state["sort"];
-  delete state["newArrival"];
+  delete newState["sort"];
+  delete newState["newArrival"];
 
   switch (action.type) {
-    case "ADD":
+    case "ADD_FILTER":
       Object.keys(action.params).forEach((key) => {
         switch (key) {
           case "sort":
@@ -25,7 +25,7 @@ export const filterReducer = (
       });
       setCookie("filter", JSON.stringify(newState));
       return newState;
-    case "DELETE":
+    case "DELETE_FILTER":
       Object.keys(action.params).forEach((key) => {
         if (key in state) {
           if (key === "price") {
@@ -40,7 +40,7 @@ export const filterReducer = (
       });
       setCookie("filter", JSON.stringify(newState));
       return newState;
-    case "RESET":
+    case "RESET_FILTER":
       setCookie("filter", JSON.stringify({}));
       return {};
     default:

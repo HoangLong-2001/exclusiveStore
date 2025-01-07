@@ -24,7 +24,7 @@ export default function CartItem(props) {
     dispatch(deleteItem(item._id));
   };
   return (
-    <tr className="cart__item" key={item._id}>
+    <>
       <td>
         <div className="cart__title">
           <img src={item.info.images[0]} alt={item.info.title} />
@@ -39,10 +39,10 @@ export default function CartItem(props) {
       </td>
 
       <td className="cart__price-new">
-        {priceCaculator(item.info.price, item.info.discount)}
+        {priceFormat(item.info.discountPrice)}
       </td>
       <td>
-        <p className="cart__quantity">
+        <div className="cart__quantity">
           <InputNumber
             width={72}
             height={44}
@@ -51,7 +51,7 @@ export default function CartItem(props) {
             defaultValue={item.quantity}
             onStep={handleStep}
           />
-        </p>
+        </div>
       </td>
       <td className="cart__subtotal">
         {priceFormat(
@@ -62,6 +62,6 @@ export default function CartItem(props) {
       <td>
         <Button icon={<DeleteOutlined />} onClick={handleDelete}></Button>
       </td>
-    </tr>
+    </>
   );
 }

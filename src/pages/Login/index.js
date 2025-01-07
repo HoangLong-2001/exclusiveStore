@@ -22,14 +22,16 @@ export default function Login() {
       return;
     }
     try {
-      const result = await login(email, password);
-      setCookie("accessToken", result.tokens.accessToken, 1 / 24);
-      setCookie("refreshToken", result.tokens.refreshToken, 30);
+      const result = await login(email, password,'customer');
+      console.log(result);
+      
+      setCookie("accessToken", result.accessToken, 1 / 60 / 24);
+      setCookie("refreshToken", result.refreshToken, 2 /60/ 24);
+      setCookie("expireT", Date.now(), 1 / 60 / 24);
       dispatch(setLogin());
       navigate("/");
     } catch (err) {
-      console.log(">>> Check Login error", err);
-
+      console.error(">>> Check Login error", err);
       setCheckLogin(err.message);
     }
   };
@@ -40,19 +42,19 @@ export default function Login() {
       </div>
       <div className="login__right">
         <form onSubmit={handleSubmit}>
-          <h1 className="login__title">Log in to Exclusive</h1>
-          <p className="login__desc">Enter your details below</p>
+          <h1 className="login__title">Đăng nhập</h1>
+          <p className="login__desc">Nhập vào thông tin của bạn</p>
           <p className={"login__warning"}>{checkLogin}</p>
           <div className="input__field">
-            <input type="text" placeholder="Enter your email address" />
+            <input type="text" placeholder="Nhập vào địa chỉ email " />
           </div>
 
           <div className="input__field">
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Nhập vào password " />
           </div>
           <div className="btn__group">
-            <input type="submit" placeholder="Login" />
-            <Link>Forget Password?</Link>
+            <input type="submit" value={"Đăng nhập"} />
+            <Link to="/forgotPassword">Quên mật khẩu?</Link>
           </div>
         </form>
       </div>

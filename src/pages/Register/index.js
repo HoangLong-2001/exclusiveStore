@@ -27,7 +27,6 @@ export default function Register() {
       setIsValid(() => checkValid);
       return;
     }
-    console.log("test");
 
     try {
       const result = await register(fullName, email, password);
@@ -51,10 +50,10 @@ export default function Register() {
       </div>
       <div className="register__right">
         <form onSubmit={handleSubmit}>
-          <h1 className="register__title">Create an account</h1>
-          <p className="register__desc">Enter your details below</p>
+          <h1 className="register__title">Tạo tài khoản</h1>
+          <p className="register__desc">Nhập vào thông tin của bạn</p>
           <div className="input__field">
-            <input type="text" placeholder="Name" name="fullName" />
+            <input type="text" placeholder="Họ và tên" name="fullName" />
           </div>
           {isValid[0] ? (
             <></>
@@ -64,8 +63,8 @@ export default function Register() {
           <div className="input__field">
             <input
               type="text"
-              placeholder="Enter your email address"
-              name="username"
+              placeholder="Địa chỉ email"
+              name="email"
             />
           </div>
           {isValid[1] ? (
@@ -74,7 +73,7 @@ export default function Register() {
             <p className="register__warning">Email không đúng định dạng</p>
           )}
           <div className="input__field">
-            <input type="password" placeholder="Password" name="password" />
+            <input type="password" placeholder="Mật khẩu" name="password" />
           </div>
           {isValid[2] ? (
             <></>
@@ -82,16 +81,16 @@ export default function Register() {
             <p className="register__warning">Mật khẩu không đúng định dạng</p>
           )}
           <div className="btn__group">
-            <input type="submit" value={"Create Account"}></input>
+            <input type="submit" value={"Đăng ký"}></input>
           </div>
         </form>
         <button onClick={handleGoogle}>
           <img src={ggLogo} alt="google" />
-          Sign up with Google
+          Đăng kí với Google
         </button>
         <p className="register__bottom">
-          <span>Already have account?</span>
-          <Link to="/login">Log in</Link>
+          <span>Bạn đã có tài khoản?</span>
+          <Link to="/login">Đăng nhập</Link>
         </p>
       </div>
     </section>

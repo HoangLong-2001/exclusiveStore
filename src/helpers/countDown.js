@@ -1,5 +1,5 @@
-const CountDown = () => {
-  const goal = new Date("2024-12-31").getTime();
+const countDown = () => {
+  const goal = new Date("2024-12-12").getTime();
   const days = Math.floor((goal - Date.now()) / (24 * 60 * 60 * 1000));
   const hours = Math.floor(
     ((goal - Date.now()) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
@@ -11,4 +11,4 @@ const CountDown = () => {
 
   return { days: days, hours: hours, minutes: minutes, seconds: seconds };
 };
-export default CountDown;
+export default countDown;

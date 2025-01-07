@@ -34,7 +34,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["MEN"], category: ["shirt"] },
+                        { genders: ["MEN"], category: ["shirt".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -44,7 +44,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["Men"], category: ["trousers"] },
+                        { genders: ["Men"], category: ["trousers".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -54,7 +54,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["Men"], category: ["shoes"] },
+                        { genders: ["Men"], category: ["shoes".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -64,7 +64,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["Men"], category: ["accessory"] },
+                        { genders: ["Men"], category: ["accessory".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -88,7 +88,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["WOMEN"], category: ["shirt"] },
+                        { genders: ["WOMEN"], category: ["shirt".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -98,7 +98,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["WOMEN"], category: ["trousers"] },
+                        { genders: ["WOMEN"], category: ["trousers".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -108,7 +108,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["WOMEN"], category: ["shoes"] },
+                        { genders: ["WOMEN"], category: ["shoes".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -118,7 +118,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["WOMEN"], category: ["accessory"] },
+                        { genders: ["WOMEN"], category: ["accessory".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -142,7 +142,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["BOYS"], category: ["shirt"] },
+                        { genders: ["BOYS"], category: ["shirt".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -152,7 +152,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["BOYS"], category: ["trousers"] },
+                        { genders: ["BOYS"], category: ["trousers".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -162,7 +162,7 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["GIRLS"], category: ["shoes"] },
+                        { genders: ["GIRLS"], category: ["shirt".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -172,17 +172,17 @@ export default function Hero() {
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["GIRLS"], category: ["accessory"] },
+                        { genders: ["GIRLS"], category: ["trousers".toUpperCase()] },
                         "/allProducts"
                       )
                     }
                   >
-                    Quần bé giá
+                    Quần bé gái
                   </li>
                   <li
                     onClick={() =>
                       handleChoice(
-                        { genders: ["KIDS"], category: ["accessory"] },
+                        { genders: ["KIDS"], category: ["accessory".toUpperCase()] },
                         "/allProducts"
                       )
                     }
@@ -220,10 +220,10 @@ export default function Hero() {
                   </li>
                   <li
                     onClick={() =>
-                      handleChoice({ brand: ["ANTA"] }, "/allProducts")
+                      handleChoice({ brand: ["LI-NING"] }, "/allProducts")
                     }
                   >
-                    Anta
+                    LI-NING
                   </li>
                 </ul>
               </div>
@@ -240,15 +240,15 @@ export default function Hero() {
                     <span>Giannis Immortality 4 EP</span>
                   </div>
                   <p data-aos="fade-up" className="hero__swipper--desc">
-                    Up to 10% off Voucher
+                    Voucher giảm tới 10%
                   </p>
                   <div data-aos="fade-up" className="hero__swipper--bottom">
                     <span
                       href="#!"
                       onClick={() => handleChoice({}, "/allProducts")}
                     >
-                      Shop Now
-                    </span>{" "}
+                      Mua ngay
+                    </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -284,9 +284,14 @@ export default function Hero() {
                     <img src={nikeLogo} width={45} alt="logo" />
                     <span>Giannis Immortality 4 EP</span>
                   </div>
-                  <p className="hero__swipper--desc">Up to 10% off Voucher</p>
+                  <p className="hero__swipper--desc"> Voucher giảm tới 10%</p>
                   <div className="hero__swipper--bottom">
-                    <a href="#!">Shop Now</a>
+                    <span
+                      href="#!"
+                      onClick={() => handleChoice({}, "/allProducts")}
+                    >
+                      Mua ngay
+                    </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -316,9 +321,14 @@ export default function Hero() {
                     <img src={nikeLogo} width={45} alt="logo" />
                     <span>Giannis Immortality 4 EP</span>
                   </div>
-                  <p className="hero__swipper--desc">Up to 10% off Voucher</p>
+                  <p className="hero__swipper--desc"> Voucher giảm tới 10%</p>
                   <div className="hero__swipper--bottom">
-                    <Link to="/register">Shop Now</Link>{" "}
+                    <span
+                      href="#!"
+                      onClick={() => handleChoice({}, "/allProducts")}
+                    >
+                      Mua ngay
+                    </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

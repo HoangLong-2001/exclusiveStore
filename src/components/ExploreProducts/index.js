@@ -6,7 +6,7 @@ import useFetch from "../../hooks/useFetch";
 export default function ExploreProducts() {
   const [pages, setPages] = useState(1);
   const [data] = useFetch({ limit: 8, pages });
-  const [total] = useFetch({  "discount>": 0.1 });
+  const [total] = useFetch({ });
 
   const handleClick = (count) => {
     setPages(pages + count);
@@ -19,11 +19,11 @@ export default function ExploreProducts() {
             <div>
               <div className="exploreProducts__today">
                 <div></div>
-                <span>Our Products</span>
+                <span>Sản phẩm của chúng tôi</span>
               </div>
             </div>
             <div className="exploreProducts__time">
-              <p className="exploreProducts__desc">Our Products</p>
+              <p className="exploreProducts__desc">Sản phẩm của chúng tôi</p>
             </div>
           </div>
           <div className="exploreProducts__top--right">
@@ -53,9 +53,8 @@ export default function ExploreProducts() {
                 className="exploreProducts__next"
                 onClick={() => handleClick(+1)}
                 disabled={
-                  total.products
-                    ? pages === parseInt(total.products.length / 4)
-                    : false
+                  total.products.length <= 8 ||
+                  pages === parseInt(total.products.length / 8)
                 }
               >
                 <svg

@@ -1,4 +1,4 @@
-import { Badge, Dropdown } from "antd";
+import { Badge, Dropdown, Modal, Input } from "antd";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./img/logo.svg";
 import searchLogo from "./img/searchLogo.svg";
@@ -10,18 +10,29 @@ import { UserOutlined, LogoutOutlined, LoginOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogOut } from "../../actions/login";
 import { logOut } from "../../services/authService";
-import { addFilter, resetFilter } from "../../actions/filter";
-
+import { getAllProducts } from "../../services/productService";
+import { useState } from "react";
+const { Search } = Input;
 export default function Header() {
+  useSelector((state) => state.loginReducer);
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cartReducer);
-  useSelector((state) => state.paramsReducer);
+  const wishList = useSelector((state) => state.wishlistReducer);
+  const [data, setData] = useState([]);
+  const [isOpen, setOpen] = useState(false);
   const navigate = useNavigate();
   const total = cartList.reduce((a, b) => {
     return a + b.quantity;
   }, 0);
-
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handleLogout = async () => {
+    console.log("logout");
+
     try {
       await logOut(getCookie("accessToken"));
       delete_cookie("accessToken");
@@ -32,26 +43,80 @@ export default function Header() {
       console.log(err.message);
     }
   };
-
+  const handleSearch = async (e) => {
+    try {
+      const result = await getAllProducts({
+        title: new RegExp(e.target.value, "i"),
+      });
+      setData(result.data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   const items = [
     {
       key: "1",
       icon: <UserOutlined />,
-      label: <Link to={"/private/info"}>Manage My Account</Link>,
+      label: <Link to={"/private/info"}>Quản lý tải khoản</Link>,
     },
     {
       key: "2",
       onClick: handleLogout,
       icon: <LogoutOutlined />,
-      label: <span>Logout</span>,
+      label: <span>Đăng xuất</span>,
     },
   ];
+  const searchItems = data.map((item, index) => {
+    return <section key={index}></section>;
+  });
   const navLinkActive = (e) => {
     return e.isActive ? "header__link--active" : "header__link";
   };
-  const token = getCookie("accessToken");
+  const token = getCookie("refreshToken");
   return (
     <>
+      <Modal
+        title="Tìm kiếm sản phẩm"
+        open={isOpen}
+        onCancel={handleClose}
+        footer={null}
+      >
+        <Search onChange={handleSearch}></Search>
+        {data.length > 0 ? (
+          <div className="search">
+            {data.map((item) => (
+              <section
+                className="search__item"
+                key={item._id}
+                onClick={() => {
+                  setOpen(false);
+                  navigate(`/${item._id}`);
+                }}
+              >
+                <img src={item.images[0]} alt={item.title} />
+                <div className="search__item--desc">
+                  <p>{item.title}</p>
+                  {item.discountPrice !== item.price ? (
+                    <>
+                      {" "}
+                      <p className="search__oldPrice">
+                        {item.price.toLocaleString()}đ
+                      </p>
+                      <p className="search__newPrice">
+                        {item.discountPrice.toLocaleString()}đ
+                      </p>
+                    </>
+                  ) : (
+                    <p>{item.price.toLocaleString()}đ</p>
+                  )}
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : (
+          <p>Không tìm thấy sản phẩm</p>
+        )}
+      </Modal>
       <div className="top">
         <p className="top__desc">Gọi đặt mua 1900.xxx (8:00 - 22:00)</p>
       </div>
@@ -89,18 +154,21 @@ export default function Header() {
                 </ul>
               </nav>
               <div className="header__bottom--right">
-                <div className="header__search">
-                  <input type="text" />
+                <button className="header__search" onClick={handleOpen}>
+                  {/* <input type="text" onChange={handleSearch} disabled/> */}
                   <img
                     src={searchLogo}
                     alt="searchLogo"
                     className="header__search--logo"
                   />
-                </div>
+                </button>
+
                 {token ? (
                   <>
-                    <Link className="header__wishlist" to={"/"}>
-                      <img src={wishlist} alt="wishlist" />
+                    <Link className="header__wishlist" to={"/private/wishlist"}>
+                      <Badge count={wishList.length}>
+                        <img src={wishlist} alt="wishlist" />
+                      </Badge>
                     </Link>
                     <Link to={"/private/cart"}>
                       <Badge count={total}>

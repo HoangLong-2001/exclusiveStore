@@ -13,7 +13,14 @@ export default function ProductCard(props) {
     <div key={item._id}>
       <Card
         hoverable
-        cover={<img alt={item.title} width="auto" height="300px" src={item.images[0]} />}
+        cover={
+          <img
+            alt={item.title}
+            width="auto"
+            height="300px"
+            src={item.images[0]}
+          />
+        }
         onClick={handleClick}
         className="card"
       >
@@ -23,7 +30,11 @@ export default function ProductCard(props) {
             <span className="card__newPrice">
               {priceFormat(item.discountPrice)}
             </span>
-            <span className="card__oldPrice">{priceFormat(item.price)}</span>
+            {item.discount ? (
+              <span className="card__oldPrice">{priceFormat(item.price)}</span>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="card__rate">
             <Rate allowHalf defaultValue={item.rate} disabled></Rate>
