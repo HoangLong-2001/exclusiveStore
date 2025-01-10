@@ -1,4 +1,4 @@
-const API_PATH = "http://localhost:8080/";
+const API_PATH = "https://sportshop-api.onrender.com/";
 export async function getAuth(path, token) {
   const response = await fetch(`${API_PATH}${path}`, {
     headers: {
