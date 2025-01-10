@@ -40,7 +40,7 @@ export default function Register() {
     setIsValid(() => checkValid);
   };
   const handleGoogle = async () => {
-    window.open("http://localhost:8080/auth/google", "_self");
+    window.open("https://sportshop-api.onrender.com/auth/google", "_self");
   };
   return (
     <section className="register">
